@@ -1,0 +1,134 @@
+<!DOCTYPE html flow-init>
+<html ng-app="phonecatApp" flow-init>
+<head>
+<base href="../../">
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<link href="html/screen/css/style.css" rel="stylesheet" media="screen and (min-width:800px)">	
+<link href="html/screen/css/style-m.css" rel="stylesheet" media="screen and (max-width:800px)"> 
+<link href="html/screen/css/ngTip.css" rel="stylesheet" >
+<link rel="html/screen/stylesheet" href="css/bootstrap.min.css">
+<script src="html/screen/js/angular/angular.js"></script>
+<script src="html/screen/js/lib/ngTip.js"></script>
+<script src="html/screen/js/lib/AjaxUploader-0.0.1.js"></script>
+<script src="html/screen/js/controllers.js"></script>
+<script src="html/screen/js/flow/ng-flow-standalone.min.js"></script>
+<title>碎屏宝</title>
+</head>
+<body ng-controller="xCtrl">
+    <ng-tip></ng-tip>
+	<div class="header clearfix">
+		<div class="x-header left back-btn" back-button><a >&lt;</a></div>
+		<div class="x-header center head-detail"><span>资料填写</span></div>
+		<div class="x-header right"><a href="#"></a></div>		
+	</div>
+	<form name="myForm" ng-submit="postOrder();">
+		<div class="container">
+			<div class="opts" >
+				<div class="item">
+					<span class="lf blue">请输入手机号 :</span>
+					<input id="tel" required name="phone" class="rt grey" type="text" ng-model="m.userId" ng-pattern="/^[1][358][0-9]{9}$/">
+				</div>
+				<div class="item">
+					<span class="lf blue">卡号 :</span>
+					<input id="tel" required name="phone" class="rt grey" type="text" ng-model="m.num" ng-pattern="/^[0-9]{9}$/">
+				</div>
+				<div class="item">
+					<span class="lf blue">密码 :</span>
+					<input id="tel" required name="phone" class="rt grey" type="text" ng-model="m.pwd" ng-pattern="/^[0-9]{9}$/">
+				</div>
+				<div class="item">
+					<span class="lf blue">品牌 :</span>
+					<div class="rt">
+						<div class="sHid"></div>
+						<select required name="brand" class="rt grey" ng-model="c.brand" ng-options="i for i in brandList">
+							<option value=""></option>			
+						</select>					
+					</div>
+				</div>
+				<div class="item">
+					<span class="lf blue">型号 :</span>
+					<div class="rt">
+						<div class="sHid"></div>
+						<select required name="name" class="rt grey" ng-model="c.model" ng-options="i for i in modelList">
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<span  class="lf blue">IMEI码:</span>
+					<input required name="imei" id="imei" class="rt grey" type="text" ng-model="m.imei" ng-pattern="/^\d{15}$/">
+				</div>
+			</div>
+			<ul class="uploadPic">
+				<li>
+					<div class="fWrap" ng-click="initImage()">
+			    	  	<input type="button" flow-btn/>
+			    	  	<div class="fHid"></div>
+					</div>
+					<p>手机正面照</p>
+				</li>
+				<li>
+				    <div class="thumbnail obv"  ng-show="1">
+				    	<input required type="hidden" ng-model="m.image">
+				      	<img ng-src="{{m.image}}" />
+				    </div>
+					<p>正面照图例</p>
+				</li>
+				<li>    
+					<div class="fWrap" ng-click="initReverseImage()">
+			      		<input type="button" flow-btn/>
+			    	  	<div class="fHid"></div>
+			      	</div>
+					<p>手机背面照</p>		      	
+			    </li> 
+			    <li>	
+				    <div class="thumbnail rev" ng-show="1">
+				    	<input type="hidden" ng-model="m.reverseImage">
+				      	<img ng-src="{{m.reverseImage}}" />
+				    </div>
+					<p>背面照图例</p>	
+	
+	
+				</li>    
+		    </ul>
+			<div class="helpTab">
+				<h3 class="title blue">帮助贴士:</h3>
+				<dl>
+					<dt class="blue">Q:</dt>
+					<dd class="blue">什么事IMEI码？如何查看？</dd>
+				</dl>
+				<dl>
+					<dt class="grey">A:</dt>
+					<dd class="grey">IMEI码是国际移动设备标识的缩写,是手机的唯一识别号码。在拨号界面输入“ * #06#”即可查看。</dd>
+				</dl>
+				<dl>
+					<dt class="blue">Q:</dt>
+					<dd class="blue">照片拍摄有什么要求？</dd>
+				</dl>
+				<dl>
+					<dt class="grey">A:</dt>
+					<dd class="grey">
+						<p>手机正面照片，请将手机置于开机状态,且在屏幕上显示手机对应的IMEI码后进行拍摄。</p>
+						<p>手机反面照片，如手机电池可以拆卸，请拆卸后拍摄背面全图，如不能拆卸，直接拍摄手机背面全图。</p>
+						<p>以上图片均需清晰完整，不然会影响您的审核哦。</p>
+					</dd>
+				</dl>
+			</div>
+			<div class="agree">
+				<span>
+					<input id="agree" required name="agree" type="checkbox" ng-model="agree">
+					<script src="html/screen/js/jquery/jquery-1.9.1.min.js"></script>
+					<script src="html/screen/js/jquery/popwin.js"></script>
+					<span>我已阅读并同意</span><a id="rule" ng-click="showAgree()" href="javascript:void(0)" class="blue">《机蜜碎屏宝客户协议》</a>
+				</span>
+			</div>
+			<input class="submit" ng-disabled="myForm.$invalid" ng-class="{'active':myForm.$valid}" type="submit" value="提交资料" />	
+
+		</div>
+	</form>
+</body>
+</html>

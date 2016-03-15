@@ -1,0 +1,65 @@
+{ 
+    "phones":[
+            {
+              "label": "Apple",
+              "name": [
+                {
+                  "label": "iPhone 6 Plus",
+                  "color": [
+                    {
+                      "label": "银"
+                    },
+                    {
+                      "label": "玫瑰金"
+                    }
+                  ]
+                },
+                {
+                  "label": "iPhone 6s",
+                  "color": [
+                    {
+                      "label": "银"
+                    },
+                    {
+                      "label": "玫瑰金"
+                    },
+                     {
+                      "label": "黑"
+                    }
+                  ]
+                }    
+              ]
+            },
+            {
+              "label": "小米",
+              "name": [
+                {
+                  "label": "红米NOTE",
+                  "color": [
+                    {
+                      "label": "红色"
+                    },
+                    {
+                      "label": "亮闪闪"
+                    }
+                  ]
+                },
+                {
+                  "label": "米5",
+                  "color": [
+                    {
+                      "label": "白色"
+                    },
+                    {
+                      "label": "蓝色"
+                    },
+                     {
+                      "label": "黑"
+                    }
+                  ]
+                }    
+              ]
+            }
+
+        ]
+  }
